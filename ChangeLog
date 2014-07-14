@@ -1,0 +1,4 @@
+2014-07-14  Roberto Reale  <roberto.reale82@gmail.com>
+
+	* tic-tac-toe.awk: Fixed indentation.  Embedded license in the code.
+	* LICENSE: Changed from GPLv2 to MIT.
