@@ -1,0 +1,3 @@
+# rosetta
+
+A programming chrestomathy.
