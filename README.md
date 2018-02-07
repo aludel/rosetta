@@ -1,3 +1,3 @@
-# rosetta
+# RPNparser
 
-A programming chrestomathy.
+An RPN parser in various languages.
