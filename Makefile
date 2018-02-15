@@ -11,10 +11,15 @@ perl:
 test-c:
 	cd c && $(MAKE) test
 
+test-java:
+	cd java && $(MAKE) test
+
 test-perl:
 	cd perl && $(MAKE) test
 
-test: test-perl
+test: test-java test-perl
 	
 clean:
-	cd c && $(MAKE) clean
+	cd c    && $(MAKE) clean
+	cd java && $(MAKE) clean
+	cd perl && $(MAKE) clean
