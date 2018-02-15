@@ -1,6 +1,6 @@
 # RPNparser
 
-An RPN parser in various languages.
+An parser for [reverse Polish notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation), in various languages.
 
 ### Build
 
