@@ -125,19 +125,16 @@ public class RPNparser {
 		Scanner in = new Scanner(System.in);
 		RPNparser parser = new RPNparser();
 
-		while (true) {
+		while (in.hasNextLine()) {
 			String s = in.nextLine();
 			if (s.length() == 0) {
 				continue;
 			}
-			if (s.equals("quit")) {
-				break;
-			}
 			
 			try {
-				System.out.println(">>> " + parser.eval(s));
+				System.out.println(parser.eval(s));
 			} catch (ParseException e) {
-				System.err.println("parse error");
+				System.err.println("PARSE ERROR");
 			}
 		}
 	}
