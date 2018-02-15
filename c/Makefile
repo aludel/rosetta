@@ -4,13 +4,13 @@ CCFLAGS=-Wall
 
 all: rpnparser
 
-parser.o: parser.c stack.h
+parser.o: parser.c parser.h stack.h
 	$(CC) $(CCFLAGS) -c parser.c
 
 stack.o: stack.c stack.h
 	$(CC) $(CCFLAGS) -c stack.c
 
-main.o: main.c parser.h stack.h
+main.o: main.c parser.h
 	$(CC) $(CCFLAGS) -c main.c
 
 rpnparser: parser.o stack.o main.o
