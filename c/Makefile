@@ -1,6 +1,6 @@
 CCFLAGS=-Wall
 
-.PHONY: all clean
+.PHONY: all test clean
 
 all: rpnparser
 
@@ -15,6 +15,8 @@ main.o: main.c parser.h stack.h
 
 rpnparser: parser.o stack.o main.o
 	$(CC) $(LDFLAGS) -o rpnparser parser.o stack.o main.o
+
+test: ;
 
 clean:
 	rm -f *.o rpnparser
