@@ -1,7 +1,9 @@
 .PHONY: all test clean
 
-all: ;
+all: RPNparser/*.java
+	javac RPNparser/*.java
 
 test: ;
 
-clean: ;
+clean:
+	rm -f RPNparser/*.class
