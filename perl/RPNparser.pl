@@ -6,6 +6,7 @@
 # inspired by http://lukaszwrobel.pl/blog/reverse-polish-notation-parser (in Ruby)
 #
 
+use strict;
 use warnings;
 
 sub parser {
@@ -65,9 +66,5 @@ sub parser {
 	return pop (@stack);
 }
 
-#
-# let's try it...
-#
+1;
 
-my $test = "2 3 - 6 3 + * 5 * 100 +"; # ((2 - 3) * (6 + 3) * 5) + 100
-print parser ($test); # = 55
