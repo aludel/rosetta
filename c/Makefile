@@ -16,7 +16,8 @@ main.o: main.c parser.h
 rpnparser: parser.o stack.o main.o
 	$(CC) $(LDFLAGS) -o rpnparser parser.o stack.o main.o
 
-test: ;
+test: test.sh
+	sh test.sh
 
 clean:
 	rm -f *.o rpnparser
