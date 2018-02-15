@@ -56,7 +56,7 @@ parse(char *s, int *result)
                         case TKN_EMPTY:
                                 if (isspace(*ch) || *ch == '\n' || *ch == '\r') {
                                         ch++;
-                                } else if (isdigit(*ch)) {
+                                } else if (isdigit(*ch) || *ch == '-') {
                                         state = TKN_POSSIBLE_NUMBER;
                                         start_token = ch;
                                 } else if (strchr(ops, *ch)) {
@@ -66,7 +66,7 @@ parse(char *s, int *result)
                                 }
                                 break;
                         case TKN_POSSIBLE_NUMBER:
-                                if (!isdigit(*ch) || *(ch+1) == '\0') {
+                                if (!(isdigit(*ch) || *ch == '-') || *(ch+1) == '\0') {
                                         state = TKN_NUMBER;
                                 } else {
                                         ch++;
