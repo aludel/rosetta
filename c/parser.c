@@ -80,8 +80,8 @@ parse(char *s, int *result)
                                 if (stack_size(stack) < 2) {
                                         state = TKN_INVALID;
                                 } else {
-                                        stack_pop(stack, &x);
                                         stack_pop(stack, &y);
+                                        stack_pop(stack, &x);
                                         intermediate = do_op(x, y, *ch);
                                         stack_push(stack, intermediate);
                                         ch++;
