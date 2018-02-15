@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "parser.h"
-#include "stack.h"
 
 
 
@@ -15,7 +14,7 @@ main(int argc, char **argv)
 
 
 	while ((read = getline(&line, &len, stdin)) != -1) {
-		if (rpn_parse(line, &result) < 0) {
+		if (parse(line, &result) < 0) {
 			printf("ERROR!\n");
 		} else {
 			printf("%d\n", result);

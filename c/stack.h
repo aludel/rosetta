@@ -6,11 +6,11 @@ typedef struct stack Stack;
 
 
 Stack *stack_create(void);
-
-StackItem *stack_push(Stack *stack, void *data);
-
-void *stack_pop(Stack *stack);
-
 void stack_destroy(Stack *stack);
+
+StackItem *stack_push(Stack *stack, int value);
+StackItem *stack_pop(Stack *stack, int *value);
+
+size_t stack_size(Stack *stack);
 
 #endif  /* _STACK_H_ */

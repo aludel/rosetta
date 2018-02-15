@@ -1,11 +1,11 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include "stack.h"
 
 
 typedef struct stack_item {
-	void *data;
+	int value;
 	StackItem *next;
 } StackItem;
 
@@ -18,96 +18,48 @@ Stack *
 stack_create(void)
 {
 	Stack *stack;
-	
-	if ((stack = malloc(sizeof(Stack))) == NULL)
-		return NULL;
-	
+	if (!(stack = malloc(sizeof(Stack)))) return NULL;
 	stack->top = NULL;
-
 	return stack;
 }
 
 StackItem *
-stack_push(Stack *stack, void *data)
+stack_push(Stack *stack, int value)
 {
 	StackItem *item;
-
-	if (stack == NULL)
-		return NULL;
-	
-	if ((item = malloc(sizeof(StackItem))) == NULL)
-		return NULL;
-	
+	if (!stack) return NULL;
+	if (!(item = malloc(sizeof(StackItem)))) return NULL;
 	item->next = stack->top;
-	item->data = data;
+	item->value = value;
 	stack->top = item;
-
 	return item;
 }
 
-void *
-stack_pop(Stack *stack)
+StackItem *
+stack_pop(Stack *stack, int *value)
 {
 	StackItem *item;
-	void *data;
-
-	if (stack == NULL)
-		return NULL;
-
-	if ((item = stack->top) == NULL)
-		return NULL;
-
+	if (!stack || !value) return NULL;
+	if (!(item = stack->top)) return NULL;
 	stack->top = item->next;
-	data = item->data;
-
+	*value = item->value;
 	free(item);
-
-	return data;
+        return item;
 }
 
 void
 stack_destroy(Stack *stack)
 {
-	void *data;
-
-	if (stack == NULL)
-		return;
-	
-	while ((data = stack_pop(stack)) != NULL) {
-		free(data);
-	}
-	
+	if (!stack) return;
 	free(stack);
 }
 
-
-#if STACK_DEBUG
-int
-main()
+size_t
+stack_size(Stack *stack)
 {
-	Stack *stack;
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
-
-	if ((stack = stack_create()) == NULL) {
-		fprintf(stderr, "Cannot create stack!\n");
-		exit(EXIT_FAILURE);
-	}
-
-	while ((read = getline(&line, &len, stdin)) != -1) {
-		if ((stack_push(stack, strdup(line))) == NULL) {
-			fprintf(stderr, "Cannot push onto stack!\n");
-			exit(EXIT_FAILURE);
-		}
-	}
-
-	free(line);
-
-	while ((line = stack_pop(stack)) != NULL) {
-		printf("%s", line);
-	}
-
-	stack_destroy(stack);
+        size_t size = 0;
+	StackItem *item;
+	if (!stack) return -1;
+        for (item = stack->top; item; item = item->next) size++;
+        return size;
 }
-#endif  /* STACK_DEBUG */
