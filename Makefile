@@ -1,25 +1,10 @@
-.PHONY: all c java perl test-c test-java test-perl test clean
+.PHONY: all test clean
 
-all: c java perl
+all:
+	for d in $(shell ./list-examples); do (cd $$d && $(MAKE)); done
 
-c:
-	cd c && $(MAKE)
-
-perl:
-	cd perl && $(MAKE)
-
-test-c:
-	cd c && $(MAKE) test
-
-test-java:
-	cd java && $(MAKE) test
-
-test-perl:
-	cd perl && $(MAKE) test
-
-test: test-java test-perl
+test:
+	for d in $(shell ./list-examples); do (cd $$d && $(MAKE) test); done
 	
 clean:
-	cd c    && $(MAKE) clean
-	cd java && $(MAKE) clean
-	cd perl && $(MAKE) clean
+	for d in $(shell ./list-examples); do (cd $$d && $(MAKE) clean); done
