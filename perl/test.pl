@@ -9,4 +9,4 @@ require "RPNparser.pl";
 #
 
 my $test = "2 3 - 6 3 + * 5 * 100 +"; # ((2 - 3) * (6 + 3) * 5) + 100
-print "OK\n" unless (parser($test) != 55);
+(parser($test) == 55) ? print "OK\n" : print "KO\n";

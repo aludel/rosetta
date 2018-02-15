@@ -2,7 +2,7 @@
 
 all: ;
 
-test:
+test: test.pl
 	perl test.pl
 
 clean: ;
