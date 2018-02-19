@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # cf. https://unix.stackexchange.com/questions/275637/limit-posix-find-to-specific-depth
-find -path '*/*/*' -prune -type f -name Makefile -exec dirname \{} \;
+find -path '*/*/*' -prune -type f -name Makefile -exec dirname \{} \; | sort
