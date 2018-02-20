@@ -50,7 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-rpnparser
+C/build
+C/coverage
+C/doc/html
+C/doc/doxygen_*
 # Compiled class file
 *.class
 
