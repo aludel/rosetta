@@ -2,7 +2,7 @@
 
 all: ;
 
-test: test.sh
+test: test/suite.bats
 	bats test/suite.bats
 
 clean: ;
