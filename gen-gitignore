@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# generates a multilanguage .gitignore by cat'ing together multiple files
+GITHUB_REPO=https://raw.githubusercontent.com/github/gitignore/master/
+
+
+for e in $(./list-examples)
+do
+        # download a language-specific template from github/gitignore
+        curl -fs $GITHUB_REPO/${e}.gitignore
+
+        # add specific includes, when present
+        cat $e/gitignore.incl 2> /dev/null
+done
