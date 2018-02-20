@@ -2,7 +2,7 @@
 
 all: ;
 
-tests: test/suite.bats
-	bats test/suite.bats
+tests: tests/suite.bats
+	bats tests/suite.bats
 
 clean: ;
