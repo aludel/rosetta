@@ -3,6 +3,6 @@
 all: ;
 
 test: test.sh
-	bash test.sh
+	bats test/suite.bats
 
 clean: ;
