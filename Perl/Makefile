@@ -1,8 +1,8 @@
-.PHONY: all test clean
+.PHONY: all tests clean
 
 all: ;
 
-test: test.pl
+tests: test.pl
 	perl test.pl
 
 clean: ;

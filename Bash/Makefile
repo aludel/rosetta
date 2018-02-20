@@ -1,8 +1,8 @@
-.PHONY: all test clean
+.PHONY: all tests clean
 
 all: ;
 
-test: test/suite.bats
+tests: test/suite.bats
 	bats test/suite.bats
 
 clean: ;

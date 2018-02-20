@@ -3,7 +3,7 @@
 all: RPNparser/*.java
 	javac RPNparser/*.java
 
-test: all test.sh
+tests: all test.sh
 	sh test.sh
 
 clean:
