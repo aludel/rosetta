@@ -8,29 +8,35 @@
 
 source ./stack.sh
 
+PARSER_STRICT=${PARSER_STRICT:-true}
+
+
 function parser
 {
     local size token result
 
     # split input into array
     IFS=' ' read -r -a array <<< "$@"
-    # initialize stack
-	stack_new stack
 
 	if [[ ${#array[@]} -eq 0 ]]
     then
-		echo "EMPTY EXPRESSION"
-		return 1
+        return 0
 	elif [[ ${#array[@]} -eq 1 ]]
     then
-		if [[ ${array[0]} =~ \d+ ]]
+		if [[ ${array[0]} =~ [0-9]+ ]]
         then
 			result=${array[0]}
+            echo $result
+            return 0
 		else
-			echo "SYNTAX ERROR"
-			return 2
+            [[ $PARSER_STRICT == true ]] || return 0
+            >&2 echo SYNTAX ERROR
+			return 1
 		fi
     fi
+
+    # initialize stack
+	stack_new stack
 
 	for token in "${array[@]}"
     do
@@ -44,8 +50,10 @@ function parser
             stack_size stack size
 			if [[ $size -lt 2 ]]
             then
-				echo "SYNTAX ERROR"
-                return 2
+                [[ $PARSER_STRICT == true ]] || break
+                stack_destroy stack
+                >&2 echo SYNTAX ERROR
+                return 1
             fi
 
             stack_pop stack y
@@ -61,26 +69,31 @@ function parser
                 '/')
                     res=$((x/y)) ;;
                 *)
-                    echo "SYNTAX ERROR"
-                    return 2
+                    [[ $PARSER_STRICT == true ]] || break
+                    stack_destroy stack
+                    >&2 echo SYNTAX ERROR
+                    return 1
                     ;;
             esac
 
 			stack_push stack $res
 		else
-			echo "SYNTAX ERROR"
-			return 2
+            [[ $PARSER_STRICT == true ]] || break
+            stack_destroy stack
+            >&2 echo SYNTAX ERROR
+            return 1
 	    fi
     done
 
-    stack_size stack size
-    if [[ $size -ne 1 ]]
-    then
-        echo "SYNTAX ERROR"
-        return 2
-    fi
-
     stack_pop stack result
+    stack_size stack size
+    stack_destroy stack
+
+    if [[ $size -ne 0 ]]
+    then
+        >&2 echo SYNTAX ERROR
+        return 1
+    fi
 
     echo $result
     return 0
