@@ -1,5 +1,5 @@
 # Executable or library name
-PROJECT = my_project
+PROJECT = rpnparser
 
 # Files containing main or entry points (to be removed from tests)
 MAIN_FILES = ./src/main.c
