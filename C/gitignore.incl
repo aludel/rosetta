@@ -1,1 +1,4 @@
-rpnparser
+C/build
+C/coverage
+C/doc/html
+C/doc/doxygen_*
