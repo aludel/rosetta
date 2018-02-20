@@ -1,4 +1,4 @@
-.PHONY: all test doc clean
+.PHONY: all tests doc clean
 
 all: RPNparser/*.java
 	javac RPNparser/*.java
