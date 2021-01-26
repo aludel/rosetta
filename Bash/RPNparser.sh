@@ -43,7 +43,7 @@ function parser
 		if [[ $token =~ [0-9]+ ]]
         then
 			stack_push stack $token
-        elif [[ $token =~ ([-\+\*:/]) ]] # the minus sign must be at the beginning or at the end
+        elif [[ $token =~ ([-\+\*:/%]) ]] # the minus sign must be at the beginning or at the end
         then
             local x y res
 
@@ -68,6 +68,8 @@ function parser
                     res=$((x*y)) ;;
                 '/'|':')
                     res=$((x/y)) ;;
+                '%')
+                    res=$((x%y)) ;;
                 *)
                     [[ $PARSER_STRICT == true ]] || break
                     stack_destroy stack
